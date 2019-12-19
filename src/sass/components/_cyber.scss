@@ -1,6 +1,14 @@
+a:hover {
+  color: $blue-2;
+  text-decoration: underline;
+}
+
 .card {
   position: relative;
-  border: 1px solid $blue-1;
-  margin: 0.625em;
-  padding: 0.625em;
+  margin: 0.625em 0.625em 2em;
+  padding: 1.5em;
+  --aug-border: 1px;
+  --aug-tr: 20px;
+  --aug-bl: 20px;
+  --aug-border-bg: #ccfcff;
 }

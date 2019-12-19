@@ -8,6 +8,25 @@
   width: 40%;
 }
 
+.contact {
+  a {
+    display: block;
+    margin-bottom: 0.5em;
+  }
+}
+
 .cv {
   width: 60%;
+}
+
+.experience {
+  margin: 2em 0;
+
+  h3 {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin-top: 0.5em;
+  }
 }
