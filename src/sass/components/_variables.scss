@@ -1,0 +1,47 @@
+// Colors, colors colors colors
+
+$black: #000000;
+$white: #ffffff;
+
+// =============================================
+// Layout - utility classes - AKD
+// =============================================
+
+.center-v {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.center-h {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.center-vh {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3D(-50%, -50%, 0);
+}
+
+.hide-text {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.desktop-only {
+  display: none;
+  @media only screen and (min-width: 768px) {
+    display: block;
+  }
+}
+
+.mobile-only {
+  display: none;
+  @media only screen and (max-width: 767px) {
+    display: block;
+  }
+}
