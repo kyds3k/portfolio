@@ -1,32 +1,112 @@
 .container {
   display: flex;
   flex-wrap: no-wrap;
-  padding: 1em;
+  padding: 1rem;
+  width: 100%;
+}
+
+.sector-one {
+  width: 35%;
+}
+
+.sector-two {
+  width: 65%;
 }
 
 .intro-vitals {
-  width: 40%;
+  width: 100%;
+}
+
+.hero {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+
+  .video-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+
+    video {
+      transform: scale(1);
+      width: 190px;
+      margin-top: -40%;
+    }
+  }
 }
 
 .contact {
-  a {
-    display: block;
-    margin-bottom: 0.5em;
+  li {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.skillset {
+  li {
+    position: relative;
+    width: 50%;
+    margin-bottom: 0.5rem;
+
+    .skill {
+      display: block;
+      position: absolute;
+      top: 50%;
+      transform: translate3d(0, -50%, 0);
+      left: 50%;
+      height: 50%;
+      width: 0%;
+      background: linear-gradient(to right, $blue-3, $blue-1);
+      transition: width 0.5s ease;
+    }
+  }
+}
+
+.scrobble-sector {
+  .now-playing {
+    display: flex;
+  }
+
+  .album-image {
+    // display: none !important;
+    filter: grayscale(20%);
+    padding-right: 1.5rem;
   }
 }
 
 .cv {
-  width: 60%;
+  outline: 1px solid $blue-1;
 }
 
 .experience {
-  margin: 2em 0;
+  margin: 2rem 0;
 
   h3 {
+    color: $blue-2;
     margin-bottom: 0;
   }
 
   p {
-    margin-top: 0.5em;
+    margin-top: 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .container {
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .intro-vitals {
+    width: 100%;
+  }
+
+  .skillset {
+    li {
+      .skill {
+        left: 70%;
+      }
+    }
   }
 }

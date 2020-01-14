@@ -1,14 +1,15 @@
-a:hover {
-  color: $blue-2;
-  text-decoration: underline;
-}
-
 .card {
   position: relative;
-  margin: 0.625em 0.625em 2em;
-  padding: 1.5em;
+  margin: 0.625em 0.75rem 2rem;
+  padding: 1.5rem;
   --aug-border: 1px;
   --aug-tr: 20px;
   --aug-bl: 20px;
   --aug-border-bg: #ccfcff;
+}
+
+@media only screen and (max-width: 767px) {
+  .card {
+    margin: 0.625rem 0 1.5rem;
+  }
 }
