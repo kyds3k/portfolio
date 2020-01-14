@@ -18,8 +18,7 @@ async function getTracks(id) {
     );
     return await response.json();
   } catch (err) {
-    console.error(err);
-    // Handle errors here
+    $(".current-artist").html("An error occurred.");
   }
 }
 
@@ -27,17 +26,21 @@ async function getTracks(id) {
 let myThumb = document.getElementsByClassName("vid-me")[0];
 let isPlaying =
   myThumb.currentTime > 0 &&
-  !vidmyThumbeo.paused &&
+  !myThumb.paused &&
   !myThumb.ended &&
   myThumb.readyState > 2;
 
 myThumb.addEventListener("mouseover", function() {
-  if (!isPlaying) this.play();
+  if (myThumb.readyState > 2) {
+    this.play();
+  }
 });
 
 myThumb.addEventListener("mouseout", function() {
-  this.pause();
-  this.currentTime = 0;
+  if (myThumb.readyState > 2) {
+    this.pause();
+    this.currentTime = 0;
+  }
 });
 
 // Skillset animations

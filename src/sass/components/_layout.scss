@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-wrap: no-wrap;
-  padding: 1rem;
+  padding: 1em;
   width: 100%;
 }
 
@@ -38,7 +38,7 @@
 
 .contact {
   li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.5em;
   }
 }
 
@@ -46,7 +46,7 @@
   li {
     position: relative;
     width: 50%;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.5em;
 
     .skill {
       display: block;
@@ -62,24 +62,41 @@
   }
 }
 
+// Last.fm current track info
 .scrobble-sector {
   .now-playing {
     display: flex;
   }
 
+  h4 {
+    margin-bottom: 0.5em;
+  }
+
   .album-image {
-    // display: none !important;
-    filter: grayscale(20%);
-    padding-right: 1.5rem;
+    padding-right: 1.5em;
+    width: 15%;
+    img {
+      filter: grayscale(100%);
+      width: 100%;
+    }
+  }
+
+  .current-track {
+    margin-bottom: 0;
+  }
+
+  .current-artist {
+    font-size: 0.875em;
   }
 }
 
+//Resume
 .cv {
   outline: 1px solid $blue-1;
 }
 
 .experience {
-  margin: 2rem 0;
+  margin: 2em 0;
 
   h3 {
     color: $blue-2;
@@ -87,7 +104,7 @@
   }
 
   p {
-    margin-top: 0.5rem;
+    margin-top: 0.5em;
   }
 }
 
@@ -98,8 +115,19 @@
     margin: 0 auto;
   }
 
-  .intro-vitals {
+  .sector-one,
+  .sector-two {
     width: 100%;
+  }
+
+  .skillset {
+    margin-bottom: 0;
+  }
+
+  .scrobble-sector {
+    .album-image {
+      width: 50%;
+    }
   }
 
   .skillset {
