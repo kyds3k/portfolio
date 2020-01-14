@@ -62,34 +62,6 @@
   }
 }
 
-// Last.fm current track info
-.scrobble-sector {
-  .now-playing {
-    display: flex;
-  }
-
-  h4 {
-    margin-bottom: 0.5em;
-  }
-
-  .album-image {
-    padding-right: 1.5em;
-    width: 15%;
-    img {
-      filter: grayscale(100%);
-      width: 100%;
-    }
-  }
-
-  .current-track {
-    margin-bottom: 0;
-  }
-
-  .current-artist {
-    font-size: 0.875em;
-  }
-}
-
 //Resume
 .cv {
   outline: 1px solid $blue-1;

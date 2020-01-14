@@ -1,0 +1,57 @@
+// Last.fm current track info
+.scrobble-sector {
+  .now-playing {
+    display: flex;
+  }
+
+  h4 {
+    margin-bottom: 1em;
+  }
+
+  .album-image {
+    padding-right: 1.5em;
+    width: 15%;
+    img {
+      filter: grayscale(100%);
+      width: 100%;
+    }
+  }
+
+  .current-track {
+    margin-bottom: 0;
+  }
+
+  .current-artist {
+    font-size: 0.875em;
+  }
+
+  .eq-lines {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+    li {
+      width: 10px;
+      height: 50px;
+      position: relative;
+      margin: 0 0.25em;
+
+      .eq-line {
+        background: linear-gradient(to top, $blue-3, $blue-1);
+        width: 10px;
+        height: 0;
+        transition: height 0.4s ease;
+        position: absolute;
+        bottom: 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .scrobble-sector {
+    .album-image {
+      width: 50%;
+    }
+  }
+}

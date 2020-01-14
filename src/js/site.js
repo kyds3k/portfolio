@@ -1,5 +1,52 @@
 $(document).ready(function() {
-  let tracks = getTracks("kyds3k");
+  //Get and display most recent track
+  goScrobble("kyds3k");
+  //Update track every 3 minutes (in case someone is captivated by my site and is on there for 3 minutes)
+  let scrobGoblin = setInterval(function() {
+    goScrobble("kyds3k");
+  }, 180000);
+
+  // Track "EQ" display
+  let eqLines = document.getElementsByClassName("eq-line");
+  let eqCount = eqLines.length;
+
+  let bars = setInterval(function() {
+    for (let i = 0; i < eqCount; i++) {
+      let eqVar = randomIntFromInterval(10, 100);
+      eqLines[i].style["height"] = eqVar + "%";
+    }
+  }, 100);
+
+  // Video thumbnail moving
+  let myThumb = document.getElementsByClassName("vid-me")[0];
+
+  myThumb.addEventListener("mouseover", function() {
+    //Check to see if video is ready to go
+    if (myThumb.readyState > 2) {
+      this.play();
+    }
+  });
+
+  myThumb.addEventListener("mouseout", function() {
+    if (myThumb.readyState > 2) {
+      this.pause();
+      this.currentTime = 0;
+    }
+  });
+
+  // Skillset animations
+  let skillz = document.getElementsByClassName("skill");
+
+  Array.from(skillz).forEach((skill, index) => {
+    setTimeout(function() {
+      let level = skill.dataset.percent;
+      $(skill).css("width", level + "%");
+    }, 250 * index);
+  });
+});
+
+function goScrobble(id) {
+  let tracks = getTracks(id);
   tracks.then(res => {
     $(".album-image").html(
       '<img src="' + res.recenttracks.track[0].image[2]["#text"] + '" />'
@@ -8,7 +55,7 @@ $(document).ready(function() {
     $(".current-track").html(res.recenttracks.track[0].name);
     $(".current-album").html(res.recenttracks.track[0].album["#text"]);
   });
-});
+}
 
 // Last.fm scrobbling
 async function getTracks(id) {
@@ -22,34 +69,7 @@ async function getTracks(id) {
   }
 }
 
-// Video thumbnail moving
-let myThumb = document.getElementsByClassName("vid-me")[0];
-let isPlaying =
-  myThumb.currentTime > 0 &&
-  !myThumb.paused &&
-  !myThumb.ended &&
-  myThumb.readyState > 2;
-
-myThumb.addEventListener("mouseover", function() {
-  if (myThumb.readyState > 2) {
-    this.play();
-  }
-});
-
-myThumb.addEventListener("mouseout", function() {
-  if (myThumb.readyState > 2) {
-    this.pause();
-    this.currentTime = 0;
-  }
-});
-
-// Skillset animations
-
-let skillz = document.getElementsByClassName("skill");
-
-Array.from(skillz).forEach((skill, index) => {
-  setTimeout(function() {
-    let level = skill.dataset.percent;
-    $(skill).css("width", level + "%");
-  }, 250 * index);
-});
+function randomIntFromInterval(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
