@@ -48,12 +48,29 @@ $(document).ready(function() {
 function goScrobble(id) {
   let tracks = getTracks(id);
   tracks.then(res => {
-    $(".album-image").html(
-      '<img src="' + res.recenttracks.track[0].image[2]["#text"] + '" />'
-    );
-    $(".current-artist").html(res.recenttracks.track[0].artist["name"]);
-    $(".current-track").html(res.recenttracks.track[0].name);
-    $(".current-album").html(res.recenttracks.track[0].album["#text"]);
+    let currentArtist = $(".current-artist").html();
+    let currentTrack = $(".current-track").html();
+    let newImage = res.recenttracks.track[0].image[2]["#text"];
+    let newArtist = res.recenttracks.track[0].artist["name"];
+    let newTrack = res.recenttracks.track[0].name;
+    let newAlbum = res.recenttracks.track[0].album["#text"];
+    console.log(currentArtist);
+    console.log(currentTrack);
+    console.log(newArtist);
+    console.log(newTrack);
+
+    if (
+      newImage ===
+      "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png"
+    )
+      newImage = "images/cassette-default.png";
+
+    if (newArtist != currentArtist && newTrack != currentTrack) {
+      $(".album-image img").attr("src", newImage);
+      $(".current-artist").html(newArtist);
+      $(".current-track").html(newTrack);
+      $(".current-album").html(newAlbum);
+    }
   });
 }
 
