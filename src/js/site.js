@@ -1,6 +1,6 @@
 $(document).ready(function() {
   //Get and display most recent track
-  goScrobble("kyds3k");
+  scrobbleScribble("kyds3k");
   //Update track every 3 minutes (in case someone is captivated by my site and is on there for 3 minutes)
   let scrobGoblin = setInterval(function() {
     goScrobble("kyds3k");
@@ -46,7 +46,7 @@ $(document).ready(function() {
 });
 
 //Render scrobbled info
-function goScrobble(id) {
+function scrobbleScribble(id) {
   let tracks = getTracks(id);
   tracks.then(res => {
     let currentArtist = $(".current-artist").html();
@@ -58,7 +58,8 @@ function goScrobble(id) {
 
     if (
       newImage ===
-      "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png"
+        "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png" ||
+      newImage === ""
     )
       newImage = "images/cassette-smaller.gif";
 
