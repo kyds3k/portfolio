@@ -45,6 +45,7 @@ $(document).ready(function() {
   });
 });
 
+//Render scrobbled info
 function goScrobble(id) {
   let tracks = getTracks(id);
   tracks.then(res => {
@@ -54,10 +55,6 @@ function goScrobble(id) {
     let newArtist = res.recenttracks.track[0].artist["name"];
     let newTrack = res.recenttracks.track[0].name;
     let newAlbum = res.recenttracks.track[0].album["#text"];
-    console.log(currentArtist);
-    console.log(currentTrack);
-    console.log(newArtist);
-    console.log(newTrack);
 
     if (
       newImage ===
@@ -66,7 +63,9 @@ function goScrobble(id) {
       newImage = "images/cassette-smaller.gif";
 
     if (newArtist != currentArtist && newTrack != currentTrack) {
-      $(".album-image img").attr("src", newImage);
+      $(".album-image img")
+        .attr("src", newImage)
+        .attr("alt", newArtist + " - " + newTrack);
       $(".current-artist").html(newArtist);
       $(".current-track").html(newTrack);
       $(".current-album").html(newAlbum);
