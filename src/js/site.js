@@ -3,7 +3,7 @@ $(document).ready(function() {
   scrobbleScribble("kyds3k");
   //Update track every 3 minutes (in case someone is captivated by my site and is on there for 3 minutes)
   let scrobGoblin = setInterval(function() {
-    goScrobble("kyds3k");
+    scrobbleScribble("kyds3k");
   }, 180000);
 
   // Track "EQ" display

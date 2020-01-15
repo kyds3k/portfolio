@@ -9,6 +9,7 @@ var settings = {
   polyfills: true,
   styles: true,
   svgs: true,
+  favicon: true,
   copy: true,
   reload: true
 };
@@ -33,6 +34,10 @@ var paths = {
   svgs: {
     input: "src/svg/*.svg",
     output: "dist/svg/"
+  },
+  favicon: {
+    input: "src/*.ico",
+    output: "dist/"
   },
   copy: {
     input: "src/copy/**/*",
