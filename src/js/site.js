@@ -6,6 +6,8 @@ $(document).ready(function() {
     scrobbleScribble("kyds3k");
   }, 180000);
 
+  typeOut(".audio-selection", "Current audio selection:", 250);
+
   // Track "EQ" display
   let eqLines = document.getElementsByClassName("eq-line");
   let eqCount = eqLines.length;
@@ -56,21 +58,46 @@ function scrobbleScribble(id) {
     let newTrack = res.recenttracks.track[0].name;
     let newAlbum = res.recenttracks.track[0].album["#text"];
 
+    let trackType = new TypeIt(".current-track", {
+      strings: newTrack,
+      speed: 50,
+      waitUntilVisible: false,
+      startDelay: 1200,
+      afterComplete: instance => {
+        $(".current-track")
+          .find(".ti-cursor")
+          .addClass("is-hidden");
+        artistType.go();
+      }
+    });
+
+    let artistType = new TypeIt(".current-artist", {
+      strings: newArtist,
+      speed: 50,
+      waitUntilVisible: false,
+      afterComplete: instance => {
+        $(".current-artist")
+          .find(".ti-cursor")
+          .addClass("is-hidden");
+      }
+    });
+
     if (
       newImage ===
         "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png" ||
       newImage === ""
-    )
+    ) {
       newImage = "images/cassette-smaller.gif";
-
-    if (newArtist != currentArtist && newTrack != currentTrack) {
-      $(".album-image img")
-        .attr("src", newImage)
-        .attr("alt", newArtist + " - " + newTrack);
-      $(".current-artist").html(newArtist);
-      $(".current-track").html(newTrack);
-      $(".current-album").html(newAlbum);
     }
+
+    $(".album-image img")
+      .attr("src", newImage)
+      .attr("alt", newArtist + " - " + newTrack);
+    trackType.go();
+
+    // $(".current-artist").html(newArtist);
+    // $(".current-track").html(newTrack);
+    $(".current-album").html(newAlbum);
   });
 }
 
@@ -86,6 +113,23 @@ async function getTracks(id) {
   }
 }
 
+//Typing function
+
+function typeOut(target, string, delay) {
+  new TypeIt(target, {
+    strings: string,
+    speed: 50,
+    startDelay: delay,
+    waitUntilVisible: true,
+    afterComplete: instance => {
+      $(target)
+        .find(".ti-cursor")
+        .addClass("is-hidden");
+    }
+  }).go();
+}
+
+//Random number for EQ bars
 function randomIntFromInterval(min, max) {
   // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);

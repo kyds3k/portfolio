@@ -6,6 +6,10 @@
   --aug-tr: 20px;
   --aug-bl: 20px;
   --aug-border-bg: #ccfcff;
+  --aug-border-fallback-color: #ccfcff;
+  transform: scaleY(0);
+  animation: expand 0.25s linear 2s forwards;
+  overflow: hidden;
 }
 
 @media only screen and (max-width: 767px) {

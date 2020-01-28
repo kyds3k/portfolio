@@ -6,6 +6,7 @@
 
   h4 {
     margin-bottom: 1em;
+    text-transform: uppercase;
   }
 
   .album-image {
@@ -19,10 +20,12 @@
 
   .current-track {
     margin-bottom: 0;
+    line-height: 1.25em;
   }
 
   .current-artist {
     font-size: 0.875em;
+    line-height: 1.25em;
   }
 
   .eq-lines {

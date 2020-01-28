@@ -22,6 +22,10 @@ $error-red: #f40000;
 // Layout - utility classes - AKD
 // =============================================
 
+.is-hidden[style] {
+  display: none !important;
+}
+
 .center-v {
   position: absolute;
   top: 50%;

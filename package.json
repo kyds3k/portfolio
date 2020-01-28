@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "animejs": "^3.1.0",
-    "floating-form-labels": "^1.2.4"
+    "floating-form-labels": "^1.2.4",
+    "typeit": "^6.1.1"
   }
 }

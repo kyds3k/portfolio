@@ -1,3 +1,13 @@
+@keyframes expand {
+  0% {
+    transform: scaleY(0);
+  }
+
+  100% {
+    transform: scaley(1);
+  }
+}
+
 @keyframes fadepulse {
   0% {
     opacity: 1;
