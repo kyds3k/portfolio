@@ -11,6 +11,7 @@ body {
     text-decoration: none;
     position: relative;
     animation: fadepulse 3s linear infinite;
+    z-index: 1;
 
     &:after {
       content: "";
