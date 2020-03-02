@@ -2,6 +2,11 @@
 .scrobble-sector {
   .now-playing {
     display: flex;
+
+    a {
+      animation: none;
+    }
+
   }
 
   h4 {

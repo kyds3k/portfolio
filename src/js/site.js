@@ -58,8 +58,11 @@ function scrobbleScribble(id) {
     let newTrack = res.recenttracks.track[0].name;
     let newAlbum = res.recenttracks.track[0].album["#text"];
 
+    let artistSlug = newArtist.replace(/\s/g, '+');
+    let trackSlug = newTrack.replace(/\s/g, '+');
+
     let trackType = new TypeIt(".current-track", {
-      strings: newTrack,
+      strings: `<a href="https://www.last.fm/music/${artistSlug}/_/${trackSlug}" target="_blank">${newTrack}</a>`,
       speed: 50,
       waitUntilVisible: false,
       startDelay: 1200,
@@ -72,7 +75,7 @@ function scrobbleScribble(id) {
     });
 
     let artistType = new TypeIt(".current-artist", {
-      strings: newArtist,
+      strings: `<a href="https://www.last.fm/music/${artistSlug}" target="_blank">${newArtist}</a>`,
       speed: 50,
       waitUntilVisible: false,
       afterComplete: instance => {
@@ -105,7 +108,7 @@ function scrobbleScribble(id) {
 async function getTracks(id) {
   try {
     let response = await fetch(
-      `https://ws.audioscrobbler.com/2.0?method=user.getRecentTracks&user=${id}&api_key=70d032701f2e8602243e3915d6d25980&&format=json&extended=1`
+      `https://ws.audioscrobbler.com/2.0?method=user.getRecentTracks&limit=1&user=${id}&api_key=70d032701f2e8602243e3915d6d25980&&format=json&extended=1`
     );
     return await response.json();
   } catch (err) {
