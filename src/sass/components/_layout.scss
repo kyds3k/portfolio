@@ -36,13 +36,13 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-evenly;
-
+  
   .video-circle {
     width: 100px;
     height: 100px;
     border-radius: 50px;
     -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
-
+    mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
     video {
       transform: scale(1);
       width: 190px;
@@ -72,7 +72,7 @@
     position: relative;
     width: 50%;
     margin-bottom: 0.5em;
-    text-shadow: 0px 0px 9px $blue-3, 0px 0px 15px $blue-3, 0px 0px 5px $blue-3;
+    text-shadow: 0px 0px 9px var(--shade-3), 0px 0px 15px var(--shade-3), 0px 0px 5px var(--shade-3);
 
     .skill {
       display: block;
@@ -82,7 +82,7 @@
       left: 60%;
       height: 50%;
       width: 0%;
-      background: linear-gradient(to right, $blue-3, $blue-1);
+      background: linear-gradient(to right, var(--shade-3), var(--shade-1));
       transition: width 0.5s ease;
     }
   }
@@ -99,7 +99,7 @@
   margin: 2em 0;
 
   h3 {
-    color: $blue-2;
+    color: var(--shade-2);
     margin-bottom: 0.5em;
   }
 

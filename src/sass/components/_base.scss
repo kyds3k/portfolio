@@ -1,13 +1,13 @@
 body {
   font-size: 16px;
-  color: $blue-1;
+  color: var(--shade-1);
   font-family: "Titillium Web", sans-serif;
-  background-color: $blue-5;
+  background-color: var(--shade-5);
 
   a,
   a:link,
   a:visited {
-    color: $blue-1;
+    color: var(--shade-1);
     text-decoration: none;
     position: relative;
     animation: fadepulse 3s linear infinite;
@@ -21,7 +21,7 @@ body {
       height: 0.125rem;
       bottom: 0;
       left: 0;
-      background: linear-gradient(to right, $blue-3, $blue-1);
+      background: linear-gradient(to right, var(--shade-3), var(--shade-1));
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
       transform: scaleX(0);

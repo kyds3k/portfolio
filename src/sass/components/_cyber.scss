@@ -5,8 +5,8 @@
   --aug-border: 1px;
   --aug-tr: 20px;
   --aug-bl: 20px;
-  --aug-border-bg: #ccfcff;
-  --aug-border-fallback-color: #ccfcff;
+  --aug-border-bg: var(--shade-1);
+  --aug-border-fallback-color: var(--shade-1);
   transform: scaleY(0);
   animation: expand 0.25s linear 2s forwards;
   overflow: hidden;

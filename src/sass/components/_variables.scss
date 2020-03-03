@@ -2,11 +2,24 @@
 
 $black: #000000;
 $white: #ffffff;
-$blue-1: #ccfcff;
-$blue-2: #6f8fa3;
-$blue-3: #365063;
-$blue-4: #18293a;
-$blue-5: #141824;
+
+$base-color: blue;
+
+.blue {
+  --shade-1: #ccfcff;
+  --shade-2: #6f8fa3;
+  --shade-3: #365063;
+  --shade-4: #18293a;
+  --shade-5: #141824;
+}
+.green {
+  --shade-1: #32c932;
+  --shade-2: #114411;
+  --shade-3: #0e350e;
+  --shade-4: #092109;
+  --shade-5: #061606;  
+}
+
 
 $error-red: #f40000;
 

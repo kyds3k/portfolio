@@ -1,4 +1,11 @@
 $(document).ready(function() {
+  // Theme change
+
+  $('.album-image img').click(function(){
+    let newClass= $('body').hasClass('blue') ? 'green' : 'blue';
+    $('body').removeClass().addClass(newClass);
+  });
+
   //Get and display most recent track
   scrobbleScribble("kyds3k");
   //Update track every 3 minutes (in case someone is captivated by my site and is on there for 3 minutes)
