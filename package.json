@@ -27,6 +27,7 @@
     "gulp-sass": "4.0.2",
     "gulp-svgmin": "2.1.0",
     "gulp-terser": "1.1.7",
+    "intersection-observer": "0.7.0",
     "jquery-scrollify": "^1.0.20",
     "jshint": "2.10.3",
     "jshint-stylish": "2.2.1",
