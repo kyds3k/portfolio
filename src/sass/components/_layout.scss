@@ -1,3 +1,4 @@
+// Main containers
 .container {
   position: relative;
   .screen-overlay {
@@ -20,6 +21,8 @@
   justify-content: center;
 }
 
+// Interior sections
+
 .sector-one {
   width: 40%;
 }
@@ -28,15 +31,17 @@
   width: 50%;
 }
 
-.intro-vitals {
-  width: 100%;
-}
+
 
 .hero {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-evenly;
-  
+  justify-content: flex-start;
+
+  .video {
+    padding: 0 2em;
+  }
+
   .video-circle {
     width: 100px;
     height: 100px;
@@ -115,13 +120,17 @@
 @media only screen and (max-width: 1024px) {
   .interface {
     flex-direction: column;
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
   }
 
   .sector-one,
   .sector-two {
     width: 100%;
+  }
+
+  .hero {
+    flex-direction: column-reverse;
   }
 
   .titles {

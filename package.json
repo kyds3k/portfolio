@@ -1,16 +1,16 @@
 {
-  "name": "project-name",
+  "name": "Adam Darby - Portfolio",
   "version": "0.0.1",
-  "description": "A description for your project.",
+  "description": "My personal portfolio/resume page",
   "main": "./dist/your-main-js-file.js",
   "author": {
-    "name": "YOUR NAME",
-    "url": "http://link-to-your-website.com"
+    "name": "Adam Darby",
+    "url": "https://kyds3k.com"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://link-to-your-git-repo.com"
+    "url": "https://github.com/kyds3k/portfolio"
   },
   "devDependencies": {
     "browser-sync": "^2.26.7",
