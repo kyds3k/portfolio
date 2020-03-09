@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   // Video thumbnail moving
   let myThumb = document.getElementsByClassName("vid-me")[0];
 
@@ -48,11 +47,13 @@ $(document).ready(function() {
   }, 100);
 
   // Theme changer
-  $('.album-image img').click(function(){
-    let newClass= $('body').hasClass('blue') ? 'green' : 'blue';
-    $('body').removeClass().addClass(newClass);
+  // Also updates song (just for demo purposes)
+  $(".album-image img").click(function() {
+    let newClass = $("body").hasClass("blue") ? "green" : "blue";
+    $("body")
+      .removeClass()
+      .addClass(newClass);
   });
-
 });
 
 //Get and render scrobbled info
@@ -66,8 +67,8 @@ function scrobbleScribble(id) {
     let newTrack = res.recenttracks.track[0].name;
     let newAlbum = res.recenttracks.track[0].album["#text"];
 
-    let artistSlug = newArtist.replace(/\s/g, '+');
-    let trackSlug = newTrack.replace(/\s/g, '+');
+    let artistSlug = newArtist.replace(/\s/g, "+");
+    let trackSlug = newTrack.replace(/\s/g, "+");
 
     //Type out track name
     let trackType = new TypeIt(".current-track", {
@@ -113,35 +114,35 @@ function scrobbleScribble(id) {
   });
 }
 
-  // Last.fm scrobbling
-  async function getTracks(id) {
-    try {
-      let response = await fetch(
-        `https://ws.audioscrobbler.com/2.0?method=user.getRecentTracks&limit=1&user=${id}&api_key=70d032701f2e8602243e3915d6d25980&&format=json&extended=1`
-      );
-      return await response.json();
-    } catch (err) {
-      $(".current-artist").html("An error occurred.");
+// Last.fm scrobbling
+async function getTracks(id) {
+  try {
+    let response = await fetch(
+      `https://ws.audioscrobbler.com/2.0?method=user.getRecentTracks&limit=1&user=${id}&api_key=70d032701f2e8602243e3915d6d25980&&format=json&extended=1`
+    );
+    return await response.json();
+  } catch (err) {
+    $(".current-artist").html("An error occurred.");
+  }
+}
+
+//Typing function
+function typeOut(target, string, delay) {
+  new TypeIt(target, {
+    strings: string,
+    speed: 50,
+    startDelay: delay,
+    waitUntilVisible: true,
+    afterComplete: instance => {
+      $(target)
+        .find(".ti-cursor")
+        .addClass("is-hidden");
     }
-  }
+  }).go();
+}
 
-  //Typing function
-  function typeOut(target, string, delay) {
-    new TypeIt(target, {
-      strings: string,
-      speed: 50,
-      startDelay: delay,
-      waitUntilVisible: true,
-      afterComplete: instance => {
-        $(target)
-          .find(".ti-cursor")
-          .addClass("is-hidden");
-      }
-    }).go();
-  }
-
-  //Random number for EQ bars
-  function randomIntFromInterval(min, max) {
-    // min and max included
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
+//Random number for EQ bars
+function randomIntFromInterval(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
