@@ -70,10 +70,11 @@ function scrobbleScribble(id) {
 
     let artistSlug = newArtist.replace(/\s/g, "+");
     let trackSlug = newTrack.replace(/\s/g, "+");
+    let trackSlugEncoded = encodeURI(trackSlug);
 
     //Type out track name
     let trackType = new TypeIt(".current-track", {
-      strings: `<a href="https://www.last.fm/music/${artistSlug}/_/${trackSlug}" target="_blank">${newTrack}</a>`,
+      strings: `<a href="https://www.last.fm/music/${artistSlug}/_/${trackSlugEncoded}" target="_blank">${newTrack}</a>`,
       speed: 50,
       waitUntilVisible: false,
       startDelay: 1200,
