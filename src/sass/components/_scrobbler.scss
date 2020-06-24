@@ -1,6 +1,7 @@
 // Last.fm current track info
 .scrobble-sector {
   .now-playing {
+    width: 100%;
     display: flex;
 
     a {
@@ -21,6 +22,10 @@
       filter: grayscale(100%);
       width: 100%;
     }
+  }
+
+  .track-info {
+    width: 85%;
   }
 
   .current-track {
@@ -61,5 +66,10 @@
     .album-image {
       width: 50%;
     }
+
+    .track-info {
+      width: 50%;
+    }
+
   }
 }

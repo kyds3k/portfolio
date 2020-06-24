@@ -53,7 +53,6 @@ $(document).ready(function() {
     $("body")
       .removeClass()
       .addClass(newClass);
-    scrobbleScribble("kyds3k");
   });
 });
 
