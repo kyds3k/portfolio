@@ -106,8 +106,21 @@
 
     @media screen and (max-width: 768px) {
       .movie-stage p {
-        font-size: 20px;
+        font-size: 1.25em;
       }
+
+      .posters-frame .poster {
+        max-width: 30%;
+      }
+
+    .movie-stage .movie-answer {
+      font-size: 1.25em;
+    }
+
+      .credit p {
+        font-size: .5em;
+      }
+
     }
 
 
@@ -144,9 +157,11 @@
   <script>
     
     let movies = [];
-    let questionType, answerType, movieQuestion, movieOne, movieTwo, movieThree, movieAnswer, questionText, questionAnswer;
+    let done = [];
+    let questionType, answerType, questionIndex, movieQuestion, movieOne, movieTwo, movieThree, movieAnswer, questionText, questionAnswer;
 
     function loadMovies() {
+      localStorage.clear();
       fetch('/js/moviegame.json').then(function (response) {
         if (response.ok) {
           return response.json();
@@ -169,7 +184,16 @@
 
     function questionGet(movies) {
       let movieCount = movies.length;
-      let questionIndex = getRandomInt(movieCount);
+      let validIndex = false;
+      while (!validIndex) {
+        questionIndex = getRandomInt(movieCount);
+        let goodNum = done.indexOf(questionIndex);
+        if (goodNum < 0) {
+          done.push(questionIndex);
+          console.log(done);
+          break;
+        }
+      }
       movieQuestion = movies[questionIndex].clue;
       movieAnswer = movies[questionIndex].answer;
       questionText = document.getElementsByClassName('movie-clue');
@@ -178,6 +202,10 @@
       // Get the movie posters
       movieOne = movies[questionIndex].movieOne;
       movieTwo = movies[questionIndex].movieTwo;
+      if (movies[questionIndex].movieThree) {
+        movieThree = movies[questionIndex].movieThree;
+        //console.log(movieThree);
+      }
       
       fetch(`https://api.themoviedb.org/3/search/movie?api_key=d35764d11cf6ee99696bb5b8a605a3c9&query=${movieOne}`).then(function (response) {
         if (response.ok) {
@@ -189,7 +217,9 @@
 
         // Store the post data to local storage
         let pathOne = dataOne.results[0].poster_path;
-        localStorage.setItem('poster-one', 'https://image.tmdb.org/t/p/w500' + pathOne)
+        let titleOne = dataOne.results[0].original_title;
+        localStorage.setItem('poster-one', 'https://image.tmdb.org/t/p/w500' + pathOne);
+        localStorage.setItem('title-one', titleOne);
 
         // Fetch another API
         return fetch(`https://api.themoviedb.org/3/search/movie?api_key=d35764d11cf6ee99696bb5b8a605a3c9&query=${movieTwo}`);
@@ -203,7 +233,34 @@
       }).then(function (dataTwo) {
         // Store the post data to local storage
         let pathTwo = dataTwo.results[0].poster_path;
+        let titleTwo = dataTwo.results[0].original_title;
           localStorage.setItem('poster-two', 'https://image.tmdb.org/t/p/w500' + pathTwo)
+          localStorage.setItem('title-two', titleTwo);
+
+        // third fetch
+        // Fetch another API
+        if (movieThree != undefined) { 
+          return fetch(`https://api.themoviedb.org/3/search/movie?api_key=d35764d11cf6ee99696bb5b8a605a3c9&query=${movieThree}`);
+        }
+
+      }).then(function (response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return Promise.reject(response);
+        }
+      }).then(function (dataThree) {
+        // Store the post data to local storage
+        console.log('movie three is ' + movieThree);
+        if (movieThree != undefined) { 
+          //console.log(movieThree);
+          let pathThree = dataThree.results[0].poster_path;
+          let titleThree = dataThree.results[0].original_title;
+          localStorage.setItem('poster-three', 'https://image.tmdb.org/t/p/w500' + pathThree)
+          localStorage.setItem('title-three', titleThree);        
+        }
+
+
       }).catch(function (error) {
         console.warn(error);
       });
@@ -215,7 +272,7 @@
     function questionFill(movieQuestion) {
       questionType = new TypeIt(".movie-clue", {
         strings: movieQuestion,
-        speed: 50,
+        speed: 0,
         waitUntilVisible: false,
         afterComplete: instance => {
           $(".movie-clue")
@@ -238,14 +295,24 @@
     event.preventDefault();
     let imageOne = localStorage.getItem('poster-one');
     let imageTwo = localStorage.getItem('poster-two');
-    $('.posters-frame .poster-1').html(`<img src="${imageOne}" alt="movie poster">`);
-    $('.poster.symbol').toggleClass('active');
-    $('.posters-frame .poster-2').html(`<img src="${imageTwo}" alt="movie poster">`);
+    let titleOne = localStorage.getItem('title-one');
+    let titleTwo = localStorage.getItem('title-two');
+
+    $('.posters-frame .poster-1').html(`<img src="${imageOne}" alt="${titleOne}">`);
+    $('.poster.symbol').addClass('active');
+    $('.posters-frame .poster-2').html(`<img src="${imageTwo}" alt="${titleTwo}">`);
+    if (localStorage.getItem('poster-three') != null) {
+      let imageThree = localStorage.getItem('poster-three');
+      let titleThree = localStorage.getItem('title-three');
+      $('.poster.symbol').addClass('active');
+      $('.posters-frame').append(`<div class="poster symbol abs-center second">+</div><div class="poster poster-3"><img src="${imageThree}" alt="${titleThree}"></div>`);      
+      $('.poster.symbol').addClass('active');      
+    }    
     $('.equals.symbol').toggleClass('active');
     let answerContent = localStorage.getItem('movie-answer');
     answerType = new TypeIt(".movie-answer", {
       strings: answerContent,
-      speed: 50,
+      speed: 0,
       waitUntilVisible: false,
       afterComplete: instance => {
         $(".movie-answer")
@@ -263,20 +330,26 @@
   if (!event.target.matches('.reload')) return;
     event.preventDefault();
     questionType = new TypeIt(".movie-clue", {
-      speed: 50
+      speed: 0
     });
     questionType.delete(null);
     questionType.go();
     answerType = new TypeIt(".movie-answer", {
-      speed: 50        
+      speed: 0        
     });
     answerType.delete(null);
     $('.image').fadeOut().html('').fadeIn();
     $('.symbol').toggleClass('active');
     $('.cta').fadeOut();
-    loadMovies();
+    localStorage.clear();
+    movieThree = undefined;
+    $('.poster-3, .symbol.second').remove();
+    setTimeout(() => {
+      loadMovies();
+    }, 1500);
   }, false);      
 
+  
   loadMovies();
 
   </script>
