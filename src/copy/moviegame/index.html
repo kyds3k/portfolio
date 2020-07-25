@@ -272,7 +272,7 @@
     function questionFill(movieQuestion) {
       questionType = new TypeIt(".movie-clue", {
         strings: movieQuestion,
-        speed: 0,
+        speed: 50,
         waitUntilVisible: false,
         afterComplete: instance => {
           $(".movie-clue")
@@ -312,7 +312,7 @@
     let answerContent = localStorage.getItem('movie-answer');
     answerType = new TypeIt(".movie-answer", {
       strings: answerContent,
-      speed: 0,
+      speed: 50,
       waitUntilVisible: false,
       afterComplete: instance => {
         $(".movie-answer")
@@ -330,12 +330,12 @@
   if (!event.target.matches('.reload')) return;
     event.preventDefault();
     questionType = new TypeIt(".movie-clue", {
-      speed: 0
+      speed: 50
     });
     questionType.delete(null);
     questionType.go();
     answerType = new TypeIt(".movie-answer", {
-      speed: 0        
+      speed: 50        
     });
     answerType.delete(null);
     $('.image').fadeOut().html('').fadeIn();
